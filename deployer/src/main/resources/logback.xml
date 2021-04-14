@@ -14,11 +14,11 @@
 		</discriminator>
 		<sift>
 			<appender name="FILE-${destination}" class="ch.qos.logback.core.rolling.RollingFileAppender">
-				<File>../logs/${destination}/${destination}.log</File>
+				<File>../logs/destination/${destination}.log</File>
 				<rollingPolicy
 						class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 					<!-- rollover daily -->
-					<fileNamePattern>../logs/${destination}/%d{yyyy-MM-dd}/${destination}-%d{yyyy-MM-dd}-%i.log.gz</fileNamePattern>
+					<fileNamePattern>../logs/destination/%d{yyyy-MM-dd}/${destination}-%d{yyyy-MM-dd}-%i.log.gz</fileNamePattern>
 					<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 						<!-- or whenever the file size reaches 100MB -->
 						<maxFileSize>512MB</maxFileSize>
