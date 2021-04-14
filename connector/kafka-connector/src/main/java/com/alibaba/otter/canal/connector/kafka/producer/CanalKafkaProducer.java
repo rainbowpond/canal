@@ -187,7 +187,7 @@ public class CanalKafkaProducer extends AbstractMQProducer implements CanalMQPro
 
             callback.commit();
         } catch (Throwable e) {
-            logger.error(e.getMessage(), e);
+            logger.error("MQ send error, ready to rollback error is [" + e.getMessage() + "]", e);
             callback.rollback();
         } finally {
             template.clear();

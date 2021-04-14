@@ -199,11 +199,11 @@ public class CanalMQStarter {
                         }
 
                     } catch (Exception e) {
-                        logger.error(e.getMessage(), e);
+                        logger.error("MQ send error [" + e.getMessage() + "]", e);
                     }
                 }
             } catch (Exception e) {
-                logger.error("process error!", e);
+                logger.error("MQ process error!", e);
             }
         }
     }
