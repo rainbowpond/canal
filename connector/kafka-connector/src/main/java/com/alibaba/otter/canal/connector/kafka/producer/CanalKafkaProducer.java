@@ -9,6 +9,11 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+import com.alibaba.otter.canal.connector.core.config.CanalConstants;
+import com.tuhu.mario.MarioConstants;
+import com.tuhu.mario.MarioUtils;
+import com.tuhu.mario.report.ReportClient;
+import com.tuhu.mario.report.ReportClientFactory;
 import org.apache.commons.lang.StringUtils;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
@@ -48,7 +53,7 @@ public class CanalKafkaProducer extends AbstractMQProducer implements CanalMQPro
     private static final String      PREFIX_KAFKA_CONFIG = "kafka.";
 
     private Producer<String, byte[]> producer;
-
+    private ReportClient reportClient;
     @Override
     public void init(Properties properties) {
         KafkaProducerConfig kafkaProducerConfig = new KafkaProducerConfig();
@@ -79,6 +84,10 @@ public class CanalKafkaProducer extends AbstractMQProducer implements CanalMQPro
         }
         kafkaProperties.put("value.serializer", KafkaMessageSerializer.class);
         producer = new KafkaProducer<>(kafkaProperties);
+        String managerAddress = MarioUtils.getProperty(properties, MarioConstants.CANAL_ADMIN_MANAGER);
+        String user = MarioUtils.getProperty(properties, MarioConstants.CANAL_ADMIN_USER);
+        String passwd = MarioUtils.getProperty(properties, MarioConstants.CANAL_ADMIN_PASSWD);
+        reportClient = ReportClientFactory.getReportClient(managerAddress, user, passwd);
     }
 
     private void loadKafkaProperties(Properties properties) {
@@ -188,6 +197,13 @@ public class CanalKafkaProducer extends AbstractMQProducer implements CanalMQPro
             callback.commit();
         } catch (Throwable e) {
             logger.error("MQ send error, ready to rollback error is [" + e.getMessage() + "]", e);
+            if(reportClient != null){
+                try{
+                    reportClient.reportError("", "MQ send error, ready to rollback error is [" + e.getMessage() + "]");
+                }catch (Exception ex){
+                    logger.error("send error to admin error", e);
+                }
+            }
             callback.rollback();
         } finally {
             template.clear();
