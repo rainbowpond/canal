@@ -3,6 +3,8 @@ package com.tuhu.mario.alarm;
 import com.alibaba.otter.canal.common.alarm.CanalAlarmHandler;
 import com.tuhu.mario.report.ReportClient;
 import com.tuhu.mario.report.ReportClientFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -10,6 +12,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @Author: jianglei
  */
 public class MarioAlarmHandler implements CanalAlarmHandler {
+    Logger logger = LoggerFactory.getLogger(MarioAlarmHandler.class);
+
     private AtomicInteger startCount = new AtomicInteger();
     private volatile boolean isStart = false;
     private String url;
@@ -30,7 +34,11 @@ public class MarioAlarmHandler implements CanalAlarmHandler {
 
     @Override
     public void sendAlarm(String destination, String msg) {
-        reportClient.reportError(destination, msg);
+        try {
+            reportClient.reportError(destination, msg);
+        }catch (Exception e){
+            logger.error("report to admin error", e);
+        }
     }
 
     @Override

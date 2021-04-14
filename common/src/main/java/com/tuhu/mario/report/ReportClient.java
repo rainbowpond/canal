@@ -1,7 +1,8 @@
 package com.tuhu.mario.report;
 
-import com.alibaba.otter.canal.common.http.HttpHelper;
+
 import com.alibaba.otter.canal.common.utils.AddressUtils;
+import com.tuhu.mario.HttpHelper;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +33,7 @@ public class  ReportClient {
     public void reportError(String destiantion, String msg){
         Map <String,String> body = new HashMap<>();
 
-        body.put("destiantion", destiantion);
+        body.put("destination", destiantion);
         body.put("ip", this.registerIp);
         body.put("msg", msg);
 
