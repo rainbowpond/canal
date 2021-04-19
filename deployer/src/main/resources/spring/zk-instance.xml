@@ -180,6 +180,7 @@
         <property name="tsdbUser" value="${canal.instance.tsdb.dbUsername:}"/>
         <property name="tsdbPwd" value="${canal.instance.tsdb.dbPassword:}"/>
         <property name="tsdbSpringXml" value="${canal.instance.tsdb.spring.xml:}"/>
+        <property name="tsdbPubKey" value="${canal.instance.tsdb.publicKey:}"/>
         <property name="tsdbSnapshotInterval" value="${canal.instance.tsdb.snapshot.interval:24}" />
         <property name="tsdbSnapshotExpire" value="${canal.instance.tsdb.snapshot.expire:360}" />
 

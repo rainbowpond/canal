@@ -20,22 +20,22 @@
         <dependency>
             <groupId>io.prometheus</groupId>
             <artifactId>simpleclient</artifactId>
-            <version>0.4.0</version>
+            <version>0.10.0</version>
         </dependency>
         <dependency>
             <groupId>io.prometheus</groupId>
             <artifactId>simpleclient_hotspot</artifactId>
-            <version>0.4.0</version>
+            <version>0.10.0</version>
         </dependency>
         <dependency>
             <groupId>io.prometheus</groupId>
             <artifactId>simpleclient_httpserver</artifactId>
-            <version>0.4.0</version>
+            <version>0.10.0</version>
         </dependency>
         <dependency>
             <groupId>io.prometheus</groupId>
             <artifactId>simpleclient_pushgateway</artifactId>
-            <version>0.4.0</version>
+            <version>0.10.0</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba.otter</groupId>

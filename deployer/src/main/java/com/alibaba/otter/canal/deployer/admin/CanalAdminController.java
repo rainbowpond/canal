@@ -28,7 +28,7 @@ import com.google.common.base.Joiner;
 
 /**
  * 提供canal admin的管理操作
- * 
+ *
  * @author agapple 2019年8月24日 下午11:39:01
  * @since 1.1.4
  */
@@ -203,7 +203,7 @@ public class CanalAdminController implements CanalAdmin {
 
     @Override
     public String listInstanceLog(String destination) {
-        Collection<File> files = org.apache.commons.io.FileUtils.listFiles(new File("../logs/" + destination + "/"),
+        Collection<File> files = org.apache.commons.io.FileUtils.listFiles(new File("../logs/"),
             TrueFileFilter.TRUE,
             TrueFileFilter.TRUE);
         List<String> names = files.stream().map(File::getName).collect(Collectors.toList());
@@ -215,7 +215,7 @@ public class CanalAdminController implements CanalAdmin {
         if (StringUtils.isEmpty(fileName)) {
             fileName = destination + ".log";
         }
-        return FileUtils.readFileFromOffset("../logs/" + destination + "/" + fileName, lines, "UTF-8");
+        return FileUtils.readFileFromOffset("../logs/" + fileName, lines, "UTF-8");
     }
 
     private InstanceAction getInstanceAction(String destination) {

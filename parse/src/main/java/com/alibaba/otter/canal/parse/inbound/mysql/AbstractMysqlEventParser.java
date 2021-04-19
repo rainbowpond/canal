@@ -29,6 +29,7 @@ public abstract class AbstractMysqlEventParser extends AbstractEventParser {
     protected String               tsdbUrl;
     protected String               tsdbUser;
     protected String               tsdbPwd;
+    protected String               tsdbPubKey;
     protected TableMetaTSDB        tableMetaTSDB;
 
     // 编码信息
@@ -153,6 +154,7 @@ public abstract class AbstractMysqlEventParser extends AbstractEventParser {
                         System.setProperty("canal.instance.tsdb.url", tsdbUrl);
                         System.setProperty("canal.instance.tsdb.dbUsername", tsdbUser);
                         System.setProperty("canal.instance.tsdb.dbPassword", tsdbPwd);
+                        System.setProperty("canal.instance.tsdb.publicKey", tsdbPubKey);
                         // 初始化
                         tableMetaTSDB = tableMetaTSDBFactory.build(destination, tsdbSpringXml);
                     } finally {
@@ -160,6 +162,7 @@ public abstract class AbstractMysqlEventParser extends AbstractEventParser {
                         System.setProperty("canal.instance.tsdb.url", "");
                         System.setProperty("canal.instance.tsdb.dbUsername", "");
                         System.setProperty("canal.instance.tsdb.dbPassword", "");
+                        System.setProperty("canal.instance.tsdb.publicKey", "");
                     }
                 }
             }
@@ -251,6 +254,10 @@ public abstract class AbstractMysqlEventParser extends AbstractEventParser {
                 tableMetaTSDB = tableMetaTSDBFactory.build(destination, tsdbSpringXml);
             }
         }
+    }
+
+    public void setTsdbPubKey(String tsdbPubKey) {
+        this.tsdbPubKey = tsdbPubKey;
     }
 
     public String getTsdbUrl() {
