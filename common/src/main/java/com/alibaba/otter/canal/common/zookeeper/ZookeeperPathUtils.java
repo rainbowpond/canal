@@ -6,14 +6,14 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * 存储结构：
- * 
+ *
  * <pre>
  * /otter
  *    canal
  *      cluster
  *      destinations
  *        dest1
- *          running (EPHEMERAL) 
+ *          running (EPHEMERAL)
  *          cluster
  *          client1
  *            running (EPHEMERAL)
@@ -25,7 +25,7 @@ import org.apache.commons.lang.StringUtils;
  *              2
  *              3
  * </pre>
- * 
+ *
  * @author zebin.xuzb @ 2012-6-21
  * @version 1.0.0
  */
@@ -33,7 +33,7 @@ public class ZookeeperPathUtils {
 
     public static final String ZOOKEEPER_SEPARATOR                          = "/";
 
-    public static final String OTTER_ROOT_NODE                              = ZOOKEEPER_SEPARATOR + "otter";
+    public static final String OTTER_ROOT_NODE                              = ZOOKEEPER_SEPARATOR + "mario";
 
     public static final String CANAL_ROOT_NODE                              = OTTER_ROOT_NODE + ZOOKEEPER_SEPARATOR
                                                                               + "canal";
